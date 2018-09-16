@@ -1,0 +1,19 @@
+{
+  "name": "searchcli",
+  "version": "1.0.0",
+  "description": "Simple node CLI app to search JSON documents",
+  "main": "search.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EditB/SearchCLI.git"
+  },
+  "author": "Edit B.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EditB/SearchCLI/issues"
+  },
+  "homepage": "https://github.com/EditB/SearchCLI#readme"
+}
