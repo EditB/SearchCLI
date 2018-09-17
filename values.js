@@ -1,8 +1,20 @@
 // data file options
 exports.dataFile = [
-    "organizations.json",
-    "tickets.json",
-    "users.json"
+    "organizations",
+    "tickets",
+    "users"
+];
+
+exports.organizationsFields = [
+  "_id",
+  "url",
+  "external_id",
+  "name",
+  "domain_names",
+  "created_at",
+  "details",
+  "shared_tickets",
+  "tags"
 ];
 
 exports.ticketsFields = [
