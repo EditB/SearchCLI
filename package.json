@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/EditB/SearchCLI/issues"
   },
-  "homepage": "https://github.com/EditB/SearchCLI#readme"
+  "homepage": "https://github.com/EditB/SearchCLI#readme",
+  "dependencies": {
+    "inquirer": "^6.2.0"
+  }
 }

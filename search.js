@@ -3,6 +3,22 @@
 //Note: implement commander/inquirer to read in command line instructions
 
 const jq = require('node-jq');
+const inquirer = require('inquirer');
+const values = require('./values');
+
+const questions = [
+    { type: 'list', name: 'dataFile', message: 'Select json file', choices: values.dataFile },
+];
+
+inquirer
+        .prompt(questions)
+        .then(function (answers) {
+            console.log('DataFile: ');
+            console.log('------------------');
+
+            console.log(answers.dataFile);
+
+
 
 // Note: split the below into a function, with parameters to pass filter, jsonPath and options
 
@@ -27,3 +43,5 @@ jq.run(filter, jsonPath, options)
     console.error(err);
     // Something went wrong...
   })
+
+});
