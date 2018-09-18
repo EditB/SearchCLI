@@ -57,3 +57,34 @@ exports.usersFields = [
   "suspended",
   "role"
 ];
+
+exports.timeStampFields = [
+    "created_at",
+    "due_at",
+    "last_login_at"
+];
+
+exports.arrayFields = [
+    "domain_names",
+    "tags"
+];
+
+exports.numericFields = [
+    "submitter_id",
+    "organization_id",
+    "assignee_id"
+];
+
+exports.booleanFields = [
+    "shared_tickets",
+    "has_incidents",
+    "active",
+    "verified",
+    "shared",
+    "suspended"
+];
+
+exports.numericIDFiles = [
+    "organizations",
+    "users"
+];
