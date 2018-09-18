@@ -55,11 +55,9 @@ const questions = [
 
 const isNumericFields = (answers) => {
   if (values.numericFields.includes(answers.field)) {
-console.log('numericFields');
     return true;
   }
   else if (answers.field == "_id" && values.numericIDFiles.includes(answers.dataFile)){
-console.log('_id with numericIDFiles');
     return true;
   }
   else {
@@ -91,7 +89,11 @@ const validInput = (answers) => {
     //Need to format it + "" + strip it of spaces +
   }
   //String: if user hasn't put quotes around it, then we should do it here otherwise program will crash.
-  else if (!isNumericFields(answers)){
+  else if (isNumericFields(answers)){
+    //Make sure the entered value is a number
+    return (!isNaN(parseInt(answers.value)))
+  }
+  else {
     //If user hasn't added quotes, we need to do it
     let str = answers.value;
     if(!((str[0] == '"' && str[str.length - 1] == '"'))){
