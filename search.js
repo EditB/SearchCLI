@@ -1,10 +1,6 @@
+#!/usr/bin/env node
+
 'use strict';
-//console.log("test");
-
-//Note: implement commander/inquirer to read in command line instructions
-
-//const joi = require('joi');
-
 const jq = require('node-jq');
 const inquirer = require('inquirer');
 const values = require('./values');
@@ -89,6 +85,7 @@ const validInput = (answers) => {
     //Need to format it + "" + strip it of spaces +
   }
   //String: if user hasn't put quotes around it, then we should do it here otherwise program will crash.
+  //Seems to be a windows cmd shell issue.
   else if (isNumericFields(answers)){
     //Make sure the entered value is a number
     return (!isNaN(parseInt(answers.value)))
@@ -107,7 +104,8 @@ const validInput = (answers) => {
   return true;
 }
 
-inquirer
+//module.exports = (questions) => {  return
+  inquirer
         .prompt(questions)
         .then(function (answers) {
 
@@ -136,4 +134,7 @@ inquirer
             })
 
       }
+
 });
+
+//};

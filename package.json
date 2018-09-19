@@ -4,7 +4,7 @@
   "description": "Simple node CLI app to search JSON documents",
   "main": "search.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
