@@ -51,14 +51,13 @@ inquirer
     .prompt(questions)
     .then(function (answers) {
 
-
       if (!helpers.validInput(answers)) {
         console.log("Please try again with a valid input");
       }
       else {
         const jsonPath = './data/'+ answers.dataFile + '.json';
         const options = {};
-        let filter = helpers.setFilter(answers);
+        const filter = helpers.setFilter(answers);
 
         jq.run(filter, jsonPath, options)
           .then((output) => {

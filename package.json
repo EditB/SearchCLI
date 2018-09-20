@@ -4,7 +4,7 @@
   "description": "Simple node CLI app to search JSON documents",
   "main": "search.js",
   "scripts": {
-    "test": "mocha"
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/EditB/SearchCLI#readme",
   "dependencies": {
-    "inquirer": "^6.2.0",
-    "joi": "^13.6.0"
+    "ava": "^0.25.0",
+    "inquirer": "^6.2.0"
   }
 }
