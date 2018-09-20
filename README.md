@@ -21,12 +21,17 @@ Run tests with this command: npm test
 It uses the following versions:
 
  node: v9.11.1
+
  npm: 6.4.1
 
  And dependencies:
+
  inquirer: 6.2.0
+
  node-jq: 1.3.1
+
  ava:
+
  inquirer-test:
 
-Note: Wrote and tested it on Windows 10 Command Prompt (cmd.exe);
+Note: Wrote and tested it on Windows 10 Command Prompt (cmd.exe).
