@@ -1,4 +1,3 @@
-// data file options
 exports.dataFile = [
     "organizations",
     "tickets",
