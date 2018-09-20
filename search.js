@@ -62,6 +62,7 @@ inquirer
         jq.run(filter, jsonPath, options)
           .then((output) => {
             console.log(output);
+            helpers.printTable(output);
           })
           .catch((err) => {
             // Something went wrong

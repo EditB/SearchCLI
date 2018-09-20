@@ -34,4 +34,6 @@ It uses the following versions:
 
  inquirer-test:
 
+ cli-table: ^0.3.1
+
 Note: Wrote and tested it on Windows 10 Command Prompt (cmd.exe).

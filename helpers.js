@@ -1,4 +1,19 @@
 const values = require('./values');
+const table = require('cli-table');
+
+exports.printTable = (outputJSON) => {
+  //outputJSON = JSON.parse(outputJSON);
+  //Note: output comes as a string; split it into an array based on {}
+  const regexCurlyBrackets = /\s*(\{[0-9]+\})\s*/g;
+  const parsedOutputJSON = outputJSON.split(regexCurlyBrackets).filter(Boolean);
+
+  //console.log(typeof parsedOutputJSON); //object
+  //console.log(parsedOutputJSON.length); //number of objects
+
+  //We can now loop through it and display it as a table or separate items with
+  //heading Item1, Item 2 etc.
+}
+
 
 exports.setFilter = (answers) => {
   let filter = '.[] | select(.' + answers.field + ' == ' + answers.value + ')';
@@ -24,9 +39,13 @@ exports.isNumericFields = (answers) => {
 };
 
 exports.validInput = (answers) => {
+  //If there's no quotes around empty value program will crash
+  if (answers.value == ""){
+    answers.value = '"' + answers.value + '"';
+  }
   //If boolean: convert the string "true"/"false" into proper boolean values
   //Note: Windows Command Prompt seem to return a string by default (for true/false)
-  if (values.booleanFields.includes(answers.field)){
+  else if (values.booleanFields.includes(answers.field)){
     //It's a boolean, but windows Command Prompt seem to return a string...
     if (answers.value == "true") {
       answers.value = true;
@@ -60,7 +79,7 @@ exports.validInput = (answers) => {
   }
   else {
     //If user hasn't manually added quotes, we need to do it, otherwise program
-    //will crash (Windows cmd shell quoting issues...)
+    //will crash (Windows cmd shell quoting issues...); note: also check for empty imputs
     if (answers.value[0] != '"'){
       answers.value = '"' + answers.value;
     }
