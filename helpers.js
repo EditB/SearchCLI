@@ -1,5 +1,16 @@
 const values = require('./values');
 
+exports.setFilter = (answers) => {
+  let filter = '.[] | select(.' + answers.field + ' == ' + answers.value + ')';
+  switch (answers.field) {
+    case 'tags':
+    case 'domain_names':
+      return filter = '.[] | select(.' + answers.field + '| index(' + answers.value + '))';
+      break;
+  }
+  return filter;
+};
+
 exports.isNumericFields = (answers) => {
   if (values.numericFields.includes(answers.field)) {
     return true;
@@ -13,11 +24,8 @@ exports.isNumericFields = (answers) => {
 };
 
 exports.validInput = (answers) => {
-  // If a field is a date/time, we need to convert it into a timestamp;
-  //also, if user doesn't enter a time only a date then we need to search all timestamps that are on that day regardless of the time
-
   //If boolean: convert the string "true"/"false" into proper boolean values
-  //Note: Windows Command Prompt seem to return a string by default
+  //Note: Windows Command Prompt seem to return a string by default (for true/false)
   if (values.booleanFields.includes(answers.field)){
     //It's a boolean, but windows Command Prompt seem to return a string...
     if (answers.value == "true") {
@@ -43,7 +51,6 @@ exports.validInput = (answers) => {
       //Not a number or not the right length
       return false;
     }
-
   }
   //String: if user hasn't put quotes around it, then we should do it here otherwise program will crash.
   //Seems to be a windows cmd shell issue.

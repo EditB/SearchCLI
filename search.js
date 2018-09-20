@@ -47,39 +47,27 @@ const questions = [
     },
 ];
 
-//Note: this could be called readInput and put into a different module
-//module.exports = (questions) => {  return
-  inquirer
-        .prompt(questions)
-        .then(function (answers) {
+inquirer
+    .prompt(questions)
+    .then(function (answers) {
 
-          if (!helpers.validInput(answers)) {
-            console.log("Please try again with a valid input");
-          }
-          else{
-          const jsonPath = './data/'+ answers.dataFile + '.json';
-          const options = {};
-          let filter = '.[] | select(.' + answers.field + ' == ' + answers.value + ')';
 
-          switch (answers.field) {
-            case 'tags':
-            case 'domain_names':
-            filter = '.[] | select(.' + answers.field + '| index(' + answers.value + '))';
-            break;
-          }
-
-          jq.run(filter, jsonPath, options)
-            .then((output) => {
-              console.log(output);
-            })
-            .catch((err) => {
-              // Something went wrong
-              console.log("Sorry, looks like something went wrong. Try again.");
-              console.error(err);
-            })
-
+      if (!helpers.validInput(answers)) {
+        console.log("Please try again with a valid input");
       }
+      else {
+        const jsonPath = './data/'+ answers.dataFile + '.json';
+        const options = {};
+        let filter = helpers.setFilter(answers);
 
+        jq.run(filter, jsonPath, options)
+          .then((output) => {
+            console.log(output);
+          })
+          .catch((err) => {
+            // Something went wrong
+            console.log("Sorry, looks like something went wrong. Try again with a different input.");
+            console.error(err);
+          })
+      }
 });
-
-//};
