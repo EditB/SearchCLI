@@ -11,7 +11,7 @@ describe('test user input', () => {
   });
 
   it('should equal tickets', () => {
-    searchModule({inquirer}).then(answers => answers.dataFile.should.equal('tickets'))
+    searchModule(...).then(answers => answers.dataFile.should.equal('tickets'))
   });
 
   // restore

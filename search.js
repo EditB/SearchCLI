@@ -8,13 +8,13 @@ const questions = [
     {
       type: 'list',
       name: 'dataFile',
-      message: 'Select the .json file you want to search',
+      message: 'Select the .json file you want to search (use arrows to move up and down)',
       choices: values.dataFile
     },
     {
       type: 'list',
       name: 'field',
-      message: 'Please enter the field you want to search on: ',
+      message: 'Select the field you want to search on (use arrows to move up and down)',
       choices: values.organizationsFields,
       when: function(answers){
         return answers.dataFile == 'organizations';
@@ -81,7 +81,7 @@ const validInput = (answers) => {
   }
   //phone; convert entry into this format: "8335-422-718" (i.e. strip it off spaces add quotes + dashes)
   else if (answers.value == "phone"){
-    //Strip it of spaces and dashes and make sure it's 10 digits; then add in the dashes to the right places.
+    //Strip it of spaces and dashes and make sure it's 10 numeric digits; then add in the dashes to the right places.
     //Need to format it + "" + strip it of spaces +
   }
   //String: if user hasn't put quotes around it, then we should do it here otherwise program will crash.
@@ -91,19 +91,19 @@ const validInput = (answers) => {
     return (!isNaN(parseInt(answers.value)))
   }
   else {
-    //If user hasn't added quotes, we need to do it
-    let str = answers.value;
-    if(!((str[0] == '"' && str[str.length - 1] == '"'))){
-      if((str[0] == "'" && str[str.length - 1] == "'")){
-        //Strip it of ''!!
-        str = str.substring(1, str.length-1);
-      }
-      answers.value = '"' + str + '"';
+    //If user hasn't manually added quotes, we need to do it, otherwise program
+    //will crash (Windows cmd shell quoting issues...)
+    if (answers.value[0] != '"'){
+      answers.value = '"' + answers.value;
+    }
+    if (answers.value[answers.value.length-1] != '"'){
+      answers.value = answers.value + '"';
     }
   }
   return true;
 }
 
+//Note: this could be called readInput and put into a different module
 //module.exports = (questions) => {  return
   inquirer
         .prompt(questions)
@@ -130,6 +130,7 @@ const validInput = (answers) => {
             })
             .catch((err) => {
               // Something went wrong
+              console.log("Sorry, looks like something went wrong. Try again.");
               console.error(err);
             })
 

@@ -10,6 +10,8 @@ Finally you will need to type in your search value.
 It will return JSON object(s) if there are matching values, otherwise it will return nothing.
 
 Run tests with this command: mocha test
+You can get out of the test mode with ctrl + c
+
 
 It uses the following versions:
 
@@ -19,4 +21,4 @@ It uses the following versions:
  And dependencies:
  inquirer: 6.2.0
 
-Note: Wrote and tested it on Windows 10 Command Prompt; looks like jq has some windows cmd shell quoting issues.
+Note: Wrote and tested it on Windows 10 Command Prompt (cmd.exe); 
