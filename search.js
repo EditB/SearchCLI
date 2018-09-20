@@ -80,9 +80,19 @@ const validInput = (answers) => {
     }
   }
   //phone; convert entry into this format: "8335-422-718" (i.e. strip it off spaces add quotes + dashes)
-  else if (answers.value == "phone"){
+  else if (answers.field == "phone"){
     //Strip it of spaces and dashes and make sure it's 10 numeric digits; then add in the dashes to the right places.
-    //Need to format it + "" + strip it of spaces +
+    //Need to format it + "" + strip it of spaces + parenthesis
+    let formattedPhoneNumber = answers.value.replace(/[-\s()]/g,"");
+    if (formattedPhoneNumber.length == 10 && !isNaN(parseInt(answers.value))){
+      //Add in the dashes & quotes
+      answers.value = '"' + formattedPhoneNumber.replace(/(\d{4})(\d{3})(\d{3})/, "$1-$2-$3") + '"';
+    }
+    else {
+      //Not a number or not the right length
+      return false;
+    }
+
   }
   //String: if user hasn't put quotes around it, then we should do it here otherwise program will crash.
   //Seems to be a windows cmd shell issue.
